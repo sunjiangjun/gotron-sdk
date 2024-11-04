@@ -653,44 +653,44 @@ func accountSub() []*cobra.Command {
 	cmdSign.Flags().BoolVar(&useFixedLength, "useFixedLength", false, "--useFixedLength=true")
 	cmdSign.Flags().BoolVar(&hashMessage, "hashMessage", false, "--hashMessage=true")
 
-	cmdVerify := &cobra.Command{
-		Use:   "verify",
-		Short: "verify message signature",
-		Args:  cobra.ExactArgs(2),
-		RunE: func(cmd *cobra.Command, args []string) error {
+	//cmdVerify := &cobra.Command{
+	//	Use:   "verify",
+	//	Short: "verify message signature",
+	//	Args:  cobra.ExactArgs(2),
+	//	RunE: func(cmd *cobra.Command, args []string) error {
+	//
+	//		message := []byte(args[0])
+	//		if hashMessage {
+	//			message = common.Keccak256([]byte(message))
+	//		}
+	//
+	//		// compute message hash
+	//		hash := keystore.TextHash(message, useFixedLength)
+	//		signature, err := hex.DecodeString(args[1])
+	//		if err != nil {
+	//			fmt.Println("Invalid signature")
+	//			return err
+	//		}
+	//
+	//		addr, err := keystore.RecoverPubkey(hash, signature)
+	//		if err != nil {
+	//			return err
+	//		}
+	//
+	//		result := make(map[string]interface{})
+	//		result["Message"] = args[0]
+	//		result["Signature"] = args[1]
+	//		result["Signer"] = addr.String()
+	//
+	//		asJSON, _ := json.Marshal(result)
+	//		fmt.Println(common.JSONPrettyFormat(string(asJSON)))
+	//		return nil
+	//	},
+	//}
+	//cmdVerify.Flags().BoolVar(&useFixedLength, "useFixedLength", false, "--useFixedLength=true")
+	//cmdVerify.Flags().BoolVar(&hashMessage, "hashMessage", false, "--hashMessage=true")
 
-			message := []byte(args[0])
-			if hashMessage {
-				message = common.Keccak256([]byte(message))
-			}
-
-			// compute message hash
-			hash := keystore.TextHash(message, useFixedLength)
-			signature, err := hex.DecodeString(args[1])
-			if err != nil {
-				fmt.Println("Invalid signature")
-				return err
-			}
-
-			addr, err := keystore.RecoverPubkey(hash, signature)
-			if err != nil {
-				return err
-			}
-
-			result := make(map[string]interface{})
-			result["Message"] = args[0]
-			result["Signature"] = args[1]
-			result["Signer"] = addr.String()
-
-			asJSON, _ := json.Marshal(result)
-			fmt.Println(common.JSONPrettyFormat(string(asJSON)))
-			return nil
-		},
-	}
-	cmdVerify.Flags().BoolVar(&useFixedLength, "useFixedLength", false, "--useFixedLength=true")
-	cmdVerify.Flags().BoolVar(&hashMessage, "hashMessage", false, "--hashMessage=true")
-
-	return []*cobra.Command{cmdBalance, cmdActivate, cmdSend, cmdAddress, cmdInfo, cmdWithdraw, cmdFreeze, cmdVote, cmdPermission, cmdSign, cmdVerify}
+	return []*cobra.Command{cmdBalance, cmdActivate, cmdSend, cmdAddress, cmdInfo, cmdWithdraw, cmdFreeze, cmdVote, cmdPermission, cmdSign}
 }
 
 func init() {
